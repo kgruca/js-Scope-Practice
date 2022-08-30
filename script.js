@@ -34,3 +34,27 @@ calcAgeIn2037(1989);
 //same with printAge()
 
 
+// hoisting with variables
+// console.log(me); gives undefined
+// console.log(job); gives reference error
+// console.log(year); gives reference error0
+
+var me = 'Krzysztof';
+let job = 'Software Engineer';
+const year = 1989;
+
+
+// hoisting with functions
+// console.log(addDecl(2, 3)); can call this function and it returns 5
+// console.log(addExpr(2, 3)); gives reference error
+// console.log(addArr(2, 3)); also gives reference error
+
+function addDecl(a, b) {
+    return a + b;
+}
+
+const addExpr = function(a, b) {
+    return a + b;
+}
+
+const addArr = (a, b) => a + b;
