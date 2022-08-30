@@ -47,7 +47,7 @@ const year = 1989;
 // hoisting with functions
 // console.log(addDecl(2, 3)); can call this function and it returns 5
 // console.log(addExpr(2, 3)); gives reference error
-// console.log(addArr(2, 3)); also gives reference error
+// console.log(addArrow(2, 3)); also gives reference error
 
 function addDecl(a, b) {
     return a + b;
@@ -57,8 +57,7 @@ const addExpr = function(a, b) {
     return a + b;
 }
 
-const addArr = (a, b) => a + b;
-
+const addArrow = (a, b) => a + b;
 
 // var variables can cause problems, as their value is set to undefined when they are hoisted
 
@@ -69,3 +68,40 @@ var numProducts = 10;
 function deleteShoppingCart() {
     console.log('All products deleted!');
 }
+
+
+// this keyword
+console.log(this); // displays information about the Window
+ 
+const calcAge = function(birthYear) {
+    console.log(2050 - birthYear);
+    console.log(this); // displays undefined
+};
+
+calcAge(1989);
+
+const calcAgeArrow = birthYear => {
+    console.log(2050 - birthYear);
+    console.log(this); // displays information about the Window
+};
+
+calcAgeArrow(1989);
+
+const krzysztof = {
+    year: 1989,
+    calcAge: function() {
+        console.log(this)
+    }
+};
+
+krzysztof.calcAge(); // shows info about the krzysztof object
+
+const svitlana = {
+    year: 1988
+};
+
+svitlana.calcAge = krzysztof.calcAge; // method borrowing
+svitlana.calcAge();
+
+const f = krzysztof.calcAge; // possible because a function is just a value
+f(); // logs undefined, as this is now a regular function call that is not attached to any object
