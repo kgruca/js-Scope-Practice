@@ -88,10 +88,35 @@ const calcAgeArrow = birthYear => {
 calcAgeArrow(1989);
 
 const krzysztof = {
+    firstName: 'Krzysztof',
     year: 1989,
     calcAge: function() {
-        console.log(this)
-    }
+        console.log(2050 - this.year);
+        /*const isMillenial = function () {
+            console.log(this);
+            console.log(this.year >= 1981 && this.year <= 1996); // this is undefined and an error is thrown. there are two solutions to this problem 
+        }
+        isMillenial();
+        */
+        // Solution 1 is to set a new variable called self and assign it the value of 'this'
+        // const self = this;
+        // const isMillenial = function () {
+        // console.log(self);
+        // console.log(self.year >= 1981 && self.year <= 1996); // this is undefined and an error is thrown. there are two solutions to this problem 
+        // }
+
+        // Solution 2 is to use an arrow function, since it will use the this keyword of its parent function. This is the better solution
+        const isMillenial = () => {
+            console.log(this);
+            console.log(this.year >= 1981 && this.year <= 1996);
+    
+        isMillenial();
+        }
+    },
+    greet: () => {
+        console.log(this);
+        console.log(`Hey, ${this.firstName}`);
+    },
 };
 
 krzysztof.calcAge(); // shows info about the krzysztof object
@@ -104,4 +129,9 @@ svitlana.calcAge = krzysztof.calcAge; // method borrowing
 svitlana.calcAge();
 
 const f = krzysztof.calcAge; // possible because a function is just a value
-f(); // logs undefined, as this is now a regular function call that is not attached to any object
+// f(); // logs undefined, as this is now a regular function call that is not attached to any object
+
+
+// regular functions vs arrow functions
+// krzysztof.greet(); // logs 'Hey, undefined', as arrow functions don't get the 'this' keyword
+// takeaway = don't use an arrow functions as a method
