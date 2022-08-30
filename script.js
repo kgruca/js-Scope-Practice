@@ -58,3 +58,14 @@ const addExpr = function(a, b) {
 }
 
 const addArr = (a, b) => a + b;
+
+
+// var variables can cause problems, as their value is set to undefined when they are hoisted
+
+if (!numProducts) deleteShoppingCart(); // causes deleteShoppingCart() to run, even though numProducts holds a value below
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+    console.log('All products deleted!');
+}
